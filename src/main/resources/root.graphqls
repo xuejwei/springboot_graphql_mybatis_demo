@@ -1,0 +1,9 @@
+type Query{
+    school(schoolId:String!):School!
+}
+
+
+type Mutation {
+    insertSchool(schoolId: String!,schoolName:String!,schoolAge:Int!,schoolAddress:String!) : School!
+    insertTeacher(teacher:TeacherInput!):Teacher!
+}

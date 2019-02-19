@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.graphql_mybatis_demo.dao.SchoolDao">
+
+    <select id="listSchools" resultType="com.example.graphql_mybatis_demo.dto.School">
+    SELECT
+      c_school_id AS schoolId,
+      c_school_name AS schoolName,
+      c_school_age AS schoolAge,
+      c_school_address AS schoolAddress
+    FROM
+      t_school
+</select>
+
+    <select id="getSchoolBySchoolId" resultType="com.example.graphql_mybatis_demo.dto.School">
+    SELECT DISTINCT
+      c_school_id AS schoolId,
+      c_school_name AS schoolName,
+      c_school_age AS schoolAge,
+      c_school_address AS schoolAddress
+    FROM
+      t_school
+    WHERE c_school_id = #{schoolId}
+
+</select>
+
+
+    <insert id="insertSchool" parameterType="com.example.graphql_mybatis_demo.dto.School">
+    INSERT INTO t_school
+    (c_school_id,c_school_name,c_school_age,c_school_address,c_update_time)
+    VALUES
+    (#{schoolId},#{schoolName},#{schoolAge},#{schoolAddress},now())
+</insert>
+
+    <delete id="deleteSchoolBySchoolId" parameterType="String">
+    DELETE FROM t_school WHERE  c_school_id = #{schoolId}
+    </delete>
+
+    <update id="updateSchool" parameterType="com.example.graphql_mybatis_demo.dto.School">
+    UPDATE t_school SET c_school_name=#{schoolName},c_school_age=#{schoolAge},c_school_address=#{schoolAddress},c_update_time=now()   WHERE  c_school_id = #{schoolId}
+    </update>
+</mapper>

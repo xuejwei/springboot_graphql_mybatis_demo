@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.graphql_mybatis_demo.dao.TeacherDao">
+
+    <select id="listTeachers" resultType="com.example.graphql_mybatis_demo.dto.Teacher">
+    SELECT
+      id AS id
+      c_teacher_id AS teacherId,
+      c_teacher_name AS teacherName,
+      c_teacher_phone AS teacherPhone,
+      c_school_id AS schoolId
+    FROM
+      t_teacher
+</select>
+
+    <select id="getTeachersBySchoolId" resultType="com.example.graphql_mybatis_demo.dto.Teacher">
+    SELECT
+      c_teacher_id AS teacherId,
+      c_teacher_name AS teacherName,
+      c_teacher_phone AS teacherPhone,
+      c_school_id AS schoolId
+    FROM
+      t_teacher
+    WHERE c_school_id = #{schoolId}
+
+</select>
+
+
+    <insert id="insertTeacher" parameterType="com.example.graphql_mybatis_demo.dto.Teacher">
+    INSERT INTO t_teacher
+    (c_teacher_id,c_teacher_name,c_teacher_phone,c_school_id,c_update_time)
+    VALUES
+    (#{teacherId},#{teacherName},#{teacherPhone},#{schoolId},now())
+</insert>
+
+    <delete id="deleteTeacherByTeacherId" parameterType="String">
+    DELETE FROM t_teacher WHERE  c_teacher_id = #{teacherId}
+    </delete>
+
+    <update id="updateTeacher" parameterType="com.example.graphql_mybatis_demo.dto.Teacher">
+    UPDATE t_teacher SET c_teacher_name=#{teacherName},c_teacher_phone=#{teacherPhone},c_school_id=#{schoolId},c_update_time=now()   WHERE  c_teacher_id = #{teacherId}
+    </update>
+</mapper>

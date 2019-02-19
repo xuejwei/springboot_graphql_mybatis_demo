@@ -1,0 +1,25 @@
+type School {
+    id: ID!
+    schoolId: String
+    schoolName: String
+    schoolAge: Int
+    schoolAddress: String
+    teachers: [Teacher]
+    master: String
+}
+
+type Teacher{
+    teacherId: String
+    teacherName: String
+    teacherPhone: String
+    schoolId:  String
+}
+
+input TeacherInput{
+    teacherId: String
+    teacherName: String
+    teacherPhone: String
+    schoolId:  String
+}
+
+
