@@ -20,7 +20,7 @@ class SchoolQueryResolver : GraphQLQueryResolver {
     @Autowired
     private lateinit var schoolService: SchoolService
 
-    fun getFieldSchool(schoolId: String): School {
+    fun school(schoolId: String): School {
         return schoolService.getSchoolBySchoolId(schoolId)
     }
 }
